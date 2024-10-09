@@ -5,7 +5,7 @@ class Car:
         self.model = model
         if self.__is_valid_vin(_vin):
             self._vin = _vin
-        if self.IncorrectCarNumbers(numbers):
+        if self.__is_valid_numbers(numbers):
             self.numbers = numbers
 
     def __is_valid_vin(self, vin_number):
@@ -17,7 +17,7 @@ class Car:
             else:
                 return True
 
-    def IncorrectCarNumbers(self, numbers):
+    def __is_valid_numbers(self, numbers):
         if not isinstance(numbers, str):
             raise IncorrectCarNumbers("Некорректный тип данных для номеров")
         else:

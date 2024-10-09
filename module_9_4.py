@@ -1,11 +1,11 @@
 # Домашнее задание по теме "Генераторные сборки".
-import random
 from random import *
 
 first = 'Мама мыла раму'
 second = 'Рамена мало было'
 
-list(map(lambda x, y: x == y, first, second))
+result = list(map(lambda x, y: x == y, first, second))
+print(result)
 
 
 def get_advanced_writer(file_name):
@@ -28,9 +28,8 @@ class MysticBall:
         return text
 
 
-write = get_advanced_writer('example.txt')
-write('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
 first_ball = MysticBall('Да', 'Нет', 'Наверное')
 print(first_ball())
 print(first_ball())
 print(first_ball())
+

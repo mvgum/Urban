@@ -12,6 +12,15 @@ def initiate_db():
     price INTEGER NOT NULL
     );
     ''')
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Users(
+    id INTEGER PRIMARY KEY,
+    username TEXT NOT NULL,
+    email TEXT NOT NULL,
+    age INTEGER NOT NULL,
+    balance INTEGER NOT NULL
+    );
+    ''')
     connection.commit()
     connection.close()
 
@@ -26,7 +35,35 @@ def get_all_products():
     return prod
 
 
-# initiate_db()
+def add_user(username, email, age):
+    connection = sqlite3.connect('not_telegram.db')
+    cursor = connection.cursor()
+    cursor.execute('INSERT INTO Users (user, email, age, balance) VALUES(?, ?, ?, ?)',
+                   (username, email, age, 1000))
+    connection.commit()
+    connection.close()
+
+
+def is_included(username):
+    connection = sqlite3.connect('not_telegram.db')
+    cursor = connection.cursor()
+    cursor.execute('SELECT user FROM Users')
+    result = cursor.fetchall()
+    print(username)
+    print(result)
+    flag = False
+    for name in result:
+        if username in name:
+            flag = True
+            break
+    connection.commit()
+    connection.close()
+    print(flag)
+    return flag
+
+
+initiate_db()
+
 # connection = sqlite3.connect('not_telegram.db')
 # cursor = connection.cursor()
 #

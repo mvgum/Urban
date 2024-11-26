@@ -21,7 +21,7 @@ async def get_users() -> list:
 
 @app.post("/user/{username}/{age}")
 async def post_user(user: User) -> User:
-    user.id = len(users) + 1
+    user.id = users[-1]['id'] + 1
     users.append(user)
     return user
 

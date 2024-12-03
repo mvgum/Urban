@@ -2,7 +2,7 @@ from app.backend.db import Base
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import CreateTable
-import user
+from app.models import *
 
 
 class Task(Base):
@@ -16,6 +16,5 @@ class Task(Base):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     slug = Column(String, unique=True, index=True)
     user = relationship(argument='User', back_populates='tasks')
-
 
 print(CreateTable(Task.__table__))
